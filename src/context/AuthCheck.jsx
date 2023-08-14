@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from './AuthContext';
 import { Error404 } from '../screens/Error404';
 import { useNavigate } from 'react-router-dom';
+import { Login } from '../screens/Login';
 
 function AuthCheck({ children }) {
   const { isAuthenticated, userValues } = useContext(AuthContext);
@@ -10,7 +11,7 @@ function AuthCheck({ children }) {
   if (isAuthenticated && userValues.role === 'ROLE_ADMIN') {
     return children;
   } else {
-      return <Error404 />
+      return <Login />
   }
 }
 
