@@ -4,18 +4,18 @@ import { UserGroupIcon, ClipboardDocumentListIcon } from "@heroicons/react/24/so
 import { ApiGetUsers } from '../api/ApiGetUsers';
 import { ApiGetpostulaciones } from '../api/ApiGetPostulaciones';
 import useAuth from '../hooks/useAuth';
+import { Publicaciones } from '../screens/Publicaciones';
+import { GetPublicaciones } from '../api/ApiPublicaciones';
 
-const DashboardBase = () => {
+const DashboardBase = (props) => {
     const [limpiadores, setLimpiadores] = useState([]);
     const [solicitantes, setSolicitantes] = useState([]);
     const [postulaciones, setPostulaciones] = useState([]);
     const [estatusPost, setStatusPost] = useState([]);
-    const {userValues} = useAuth();
-
-    let token = userValues.token;
+    const [dataVuales, setGetPublicaciones] = useState([])
 
     const config = {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${props.token}` }
     };
 
     const getUsersData = async () => {
@@ -76,6 +76,14 @@ const DashboardBase = () => {
         })
     }
 
+    const getPublicacionesData = async () => {
+        await GetPublicaciones(config).then((res) => {
+            setGetPublicaciones(res.data)
+        })
+        console.log(response.data)
+        setGetPublicaciones(response.data)
+    }
+
     useEffect(() => {
         getUsersData()
     }, [])
@@ -87,14 +95,11 @@ const DashboardBase = () => {
     //const valueFormatter = (number) => `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
     return (
-        <main className='bg-slate-200 p-6 sm:p-10'>
-            <Title>Dashboard de KAAX</Title>
-            <Text>Bienvenido administrador</Text>
-
+        <main className=' p-6 sm:p-10'>
             <TabGroup>
                 <TabList>
-                    <Tab icon={UserGroupIcon}>Users</Tab>
-                    <Tab icon={ClipboardDocumentListIcon}>Publicaciones</Tab>
+                    <Tab icon={UserGroupIcon} >Users</Tab>
+                    <Tab icon={ClipboardDocumentListIcon} onClick={()=>getPublicacionesData()}>Publicaciones</Tab>
                 </TabList>
                 <TabPanels>
                     <TabPanel>  
@@ -127,6 +132,7 @@ const DashboardBase = () => {
                     </TabPanel>
                     <TabPanel>
                         <div className="mt-10">
+                            <Publicaciones dataVuales={dataVuales}/>
                         </div>
                     </TabPanel>
                 </TabPanels>

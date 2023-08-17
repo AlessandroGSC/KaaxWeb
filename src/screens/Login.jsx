@@ -60,9 +60,10 @@ export const Login = () => {
 					userImage: response.data.response.user.userImage,
 					username: response.data.response.user.username
 				}
-                if(userData.role === "ROLE_ADMIN\r\n"){
+                if(userData.role === "ROLE_ADMIN"){
                     setIsAuthenticated(true)
                     console.log(userData)
+                    console.log("access granted")
                     LoginData(userData)
                     toast.success('Bienvenido', {
                         position: 'top-center', // Posición de la notificación
@@ -113,8 +114,10 @@ export const Login = () => {
             <div className="row vh-100 justify-content-center align-items-center ">
                 <div className="col-xs-12 col-sm-6 col-md-4  mx-auto ">
                     <div className="card" style={StylesLogin.cardContent}>
-                        <div className="card-body ">
+                        <div className="card-body">
+                            <div style={StylesLogin.containerLogo}>
                             <img src={image} style={StylesLogin.logo}></img>
+                            </div>
                             <h2>Inicio de sesión</h2>
                             <br></br>
                             <Formik

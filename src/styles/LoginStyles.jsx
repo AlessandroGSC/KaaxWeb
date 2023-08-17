@@ -6,8 +6,8 @@ export const StylesLogin = {
         borderColor: 'black',
     },
     logo: {
-        width: '200px',
-        height: '200px',
+        width: '250px',
+        height: '250px',
         margin: '-20px',
     },
     error: {
@@ -18,4 +18,10 @@ export const StylesLogin = {
     backGradiendt: {
         backgroundImage: 'linear-gradient(to bottom, #6ce8cd, #00d4ff)'
     },
+    containerLogo: {
+        textAlign: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        display: 'flex',
+    }
 }
