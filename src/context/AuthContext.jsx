@@ -8,7 +8,7 @@ export function AuthProvider({ children }) {
 
   const LoginData = (userValues) => {
     setUser(userValues)
-}
+  }
 
   const valueContext = {
     isAuthenticated, 

@@ -8,10 +8,10 @@ function AuthCheck({ children }) {
   const { isAuthenticated, userValues } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  if (isAuthenticated && userValues.role === 'ROLE_ADMIN') {
+  if (isAuthenticated && userValues.role === 'ROLE_ADMIN\r\n') {
     return children;
   } else {
-      return <Login />
+    navigate('/home')
   }
 }
 
