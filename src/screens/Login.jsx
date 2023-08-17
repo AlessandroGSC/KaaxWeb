@@ -34,7 +34,7 @@ export const Login = () => {
     }
 
     useEffect(() => {
-        if(isAuthenticated && userData.role === "ROLE_ADMIN"){
+        if(isAuthenticated && userData.role === "ROLE_ADMIN\r\n"){
             navigate('/home');
         }
     }, [isAuthenticated])
@@ -60,7 +60,7 @@ export const Login = () => {
 					userImage: response.data.response.user.userImage,
 					username: response.data.response.user.username
 				}
-                if(userData.role === "ROLE_ADMIN"){
+                if(userData.role === "ROLE_ADMIN\r\n"){
                     setIsAuthenticated(true)
                     console.log(userData)
                     LoginData(userData)
