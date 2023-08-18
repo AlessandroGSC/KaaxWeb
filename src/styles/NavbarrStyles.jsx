@@ -1,6 +1,6 @@
-export const StylesNavBar ={
-    navBar:{
-        backgroundColor: '#023e8a',
+export const StylesNavBar = {
+    navBar: {
+        backgroundColor: '#219ebc',
         color: 'white',
         height: '50px',
         display: 'flex',
@@ -11,5 +11,8 @@ export const StylesNavBar ={
         width: '100%',
         zIndex: '100',
     },
-    
+    items: {
+        backgroundColor: '#219ebc'
+    }
+
 }

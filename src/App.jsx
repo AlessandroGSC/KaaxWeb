@@ -7,18 +7,26 @@ import { AuthProvider } from './context/AuthContext'
 import { Login } from './screens/Login'
 import { Error404 } from './screens/Error404'
 import { Toaster } from 'react-hot-toast'
+import { Error403 } from './screens/Error403'
+import { Publicaciones } from './screens/Publicaciones'
+import Cookies from 'js-cookie'
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const userCookie = Cookies.get('userCookie');
+  const userValues = userCookie ? JSON.parse(userCookie) : {};
   return (
     <AuthProvider>
       <Toaster />
       <Routes>
-        <Route path="/" element={<AuthCheck><Home /></AuthCheck>} />
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="unauthorized" element={<Error404 />} />
-        <Route path="/home" element={<AuthCheck><Home /></AuthCheck>} />
+        <Route path="unauthorized" element={<Error403 />} />
+        <Route
+          path="/home"
+          element={<AuthCheck userValues={userValues}><Home /></AuthCheck>}
+        />
+        <Route path="*" element={<Login />} />
+        <Route path="/publicaciones" element={<Publicaciones />} />
       </Routes>
     </AuthProvider>
   )
